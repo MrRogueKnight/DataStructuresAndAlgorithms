@@ -1,0 +1,16 @@
+import re
+
+def parse_phone_number(phone_number):
+    pattern = r"^(\d{1,3})[- ](\d{1,3})[- ](\d{4,10})$"
+    match = re.match(pattern, phone_number)
+    if match:
+        country_code = match.group(1)
+        local_area_code = match.group(2)
+        number = match.group(3)
+        return f"CountryCode={country_code},LocalAreaCode={local_area_code},Number={number}"
+    else:
+        return "Error: Could not parse phone number."
+N = int(input())
+for _ in range(N):
+    phone_number_line = input()
+    print(parse_phone_number(phone_number_line))
